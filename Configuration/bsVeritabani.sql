@@ -1508,7 +1508,7 @@ CREATE TABLE IF NOT EXISTS `personel` (
 
 INSERT INTO `personel` (`personelNo`, `sicilNo`, `adi`, `soyadi`, `sifre`, `eposta`, `cinsiyet`, `babaAdi`, `grup`, `adres`, `il`, `ilce`, `dogumTarihi`, `kayitTarihi`, `aciklama`) VALUES
 ('00000000001', '44556', 'Mertt', 'Korkmazt', 'a771da5dcc6218160905311d9d38503e', 'mk@gmail.com', 'E', 'ali', '2', 'karabük', '41', 537, '1999-05-01', '2011-05-27', 'aciklamaaaa'),
-('00000000002', '2222', 'Burak', 'İnner', 'binner', 'Girilmemiş', 'E', 'Ahmet', '1', 'Bilinmiyor', '22', 276, '0000-00-00', '0000-00-00', 'Bilinmiyor'),
+('00000000002', '2222', 'Aylin', 'Binner', 'binner', 'Girilmemiş', 'E', 'Ahmet', '1', 'Bilinmiyor', '22', 276, '0000-00-00', '0000-00-00', 'Bilinmiyor'),
 ('00000000021', '0', 'Mehmet', 'Yılmaz', '035e15c85c630a56ebfd9d44f7796da1', 'Girilmemiş', 'E', 'Girilmemiş', '1', 'Bilinmiyor', '06', 064, '1994-06-01', '2011-06-06', 'Bilinmiyor'),
 ('11111111111', '0', 'Burak Alparslan', 'Yorulmaz', 'adbc91a43e988a3b5b745b8529a90b61', 'ba@com', 'E', 'Yılmaz', '2', 'kocaeli', '35', 446, '1984-05-01', '2011-05-27', 'yok.......'),
 ('11111111122', '0', 'Ayşe', 'as', '4124bc0a9335c27f086f24ba207a4912', 'ae@a.com', 'K', 'Mehmet', '1', 'Bilinmiyor', '07', 084, '2011-05-27', '2011-05-27', 'Bilinmiyor'),
