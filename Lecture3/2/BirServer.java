@@ -29,13 +29,20 @@ public class BirServer {
 		System.out.println(clientSocket.getInetAddress().getHostName() + " : " + clientSocket.getPort()+ " baglandi.");
 		
 		// input stream ve output stream olustur
-		out = new PrintWriter(clientSocket.getOutputStream(), true);
-		in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
-	
+		try{	
+			out = new PrintWriter(clientSocket.getOutputStream(), true);
+			in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
+		} catch (IOException e) {
+			System.out.println("Read failed");
+			System.exit(-1);
+		}
 		String inputLine, outputLine;
 		System.out.println("istemciden girdi bekleniyor...");
-		while ((inputLine = in.readLine()) != null) { // istemciden gelen string okunuyor...
-			System.out.println("istemciden gelen :" + inputLine);
+		
+		while (true) 
+		{ // istemciden gelen string okunuyor...
+			inputLine = in.readLine();
+			System.out.println(clientSocket.getLocalSocketAddress()+"istemcisinden gelen :" + inputLine);
 			outputLine = inputLine.toUpperCase(); // 
 			
 			out.println(outputLine); // 

@@ -1,4 +1,11 @@
 
+telnet time.nist.gov 13
+nc time.nist.gov 13
+
+#You’re going to connect to the daytime server at the
+#National Institute for Standards and Technology (NIST) and ask it for the current time.
+
+
 1999  netcat -l 12345 #sunucu
 1998  nc 127.0.0.1 12345 #istemci
 

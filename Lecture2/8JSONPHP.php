@@ -31,7 +31,7 @@
                         $('#ortaForm').empty();
                         $.each(gelenVeri, function(i, ogrenci){
                             $('#ortaForm')
-                                .append(ogrenci.adi +'--')
+                                .append(i+'..'+ogrenci.adi +'--')
                                 .append(ogrenci.soyadi+'<hr>')
                         });
 

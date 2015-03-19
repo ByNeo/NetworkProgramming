@@ -36,7 +36,7 @@
                             var ad = $(this).find('adi').text();
                             var soyad = $(this).find('soyadi').text();
                             //alert(ad);
-                            $('#ortaForm').append(ad+' '+soyad+'<hr>');
+                            $('#ortaForm').append(index+ ad+'--'+soyad+'<br>');
 
                         });
 

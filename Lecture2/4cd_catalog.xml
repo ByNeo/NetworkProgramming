@@ -8,6 +8,7 @@
 		<COMPANY>Columbia</COMPANY>
 		<PRICE>10.90</PRICE>
 		<YEAR>1985</YEAR>
+        <DURATION>10.5</DURATION>
 	</CD>
 	<CD>
 		<TITLE>Hide your heart</TITLE>

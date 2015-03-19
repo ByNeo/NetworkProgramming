@@ -9,7 +9,7 @@ public class BirClient
 		Socket socket = null;
 		//PrintWriter out = null; // Character output, mesaj gondermek icin
 		//BufferedReader in = null; // Character Input
-		String host = "www.xyz.com"; // "www.google.com"
+		String host = "www.google.com"; // "www.google.com"
 		int port=80;
 		try {
 			socket = new Socket(host, port); // "localhost" ya da sunucu IP adresi
