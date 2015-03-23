@@ -1,5 +1,6 @@
 import java.net.*;
 import java.io.*;
+import java.util.Date;
 
 public class BirServer {
 	public static void main(String[] args) throws IOException {
@@ -11,7 +12,8 @@ public class BirServer {
 		//String host = "localhost";
 		int port=8080;
 		
-		try {
+		try 
+		{
 			serverSocket = new ServerSocket(port);
 		} catch (IOException e) {
 			System.err.println("I/O exception: " + e.getMessage());
@@ -19,9 +21,11 @@ public class BirServer {
 		}
 		System.out.println("Sunucu baslatildi. Baglanti bekleniyor...");
 		
-		try {
+		try 
+		{
 			clientSocket = serverSocket.accept(); 
-		} catch (IOException e) {
+		} catch (IOException e) 
+		{
 			System.err.println("Accept failed.");
 			System.exit(1);
 		}
@@ -29,15 +33,17 @@ public class BirServer {
 		System.out.println(clientSocket.getInetAddress().getHostName() + " : " + clientSocket.getPort()+ " baglandi.");
 		
 		// input stream ve output stream olustur
-		try{	
+		try
+		{	
 			out = new PrintWriter(clientSocket.getOutputStream(), true);
 			in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
-		} catch (IOException e) {
+		} catch (IOException e) 
+		{
 			System.out.println("Read failed");
 			System.exit(-1);
 		}
 		String inputLine, outputLine;
-		System.out.println("istemciden girdi bekleniyor...");
+		System.out.println("istemciden girdi bekleniyorrr...");
 		
 		while (true) 
 		{ // istemciden gelen string okunuyor...

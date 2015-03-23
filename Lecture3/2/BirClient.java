@@ -44,9 +44,14 @@ public class BirClient
 		BufferedReader stdIn = new BufferedReader(new InputStreamReader(System.in));
 		String userInput;
 		System.out.println("Buyuk harflere cevrilmesi icin girdi bekleniyor (baglantiyi kesmek icin: end) ...");
-		while (!(userInput = stdIn.readLine()).equals("end")) {
+		while (true) 
+		{
+			userInput = stdIn.readLine();
+			if (userInput.equals("end")) 
+				break;
 			out.println(userInput);
-			System.out.println("Sunucudan gelen: " + in.readLine());
+			System.out.println("Sunucudan gelenn: " + in.readLine());
+			
 		}
 		System.out.println("Baglanti kesiliyor...");
 		

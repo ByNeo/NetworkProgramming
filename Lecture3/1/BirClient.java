@@ -20,25 +20,10 @@ public class BirClient
 			System.err.println("Sunucu bulunamadi");
 			System.exit(1);
 		} 
-		/*catch (IOException e) {
-			System.err.println("I/O exception:" + e.getMessage());
-			System.exit(1);
-		}*/
+		
 		System.out.println("Sunucuya baglanildi."+socket.getLocalSocketAddress());
-		// klavyeden girdi: stdIn
-		/*BufferedReader stdIn = new BufferedReader(new InputStreamReader(System.in));
-		String userInput;
-		System.out.println("Buyuk harflere cevrilmesi icin girdi bekleniyor (baglantiyi kesmek icin: end) ...");
-		while (!(userInput = stdIn.readLine()).equals("end")) {
-			out.println(userInput);
-			System.out.println("Sunucudan gelen: " + in.readLine());
-		}
-		System.out.println("Baglanti kesiliyor...");
-
-		out.close();
-		in.close();
-		stdIn.close();
-		socket.close();*/
+		
+		socket.close();
 	}
 
 }

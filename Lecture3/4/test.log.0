@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2015-03-23T18:47:28</date>
+  <millis>1427129248664</millis>
+  <sequence>0</sequence>
+  <logger>requests</logger>
+  <level>INFO</level>
+  <class>MultiThreadServer$Handler</class>
+  <method>run</method>
+  <thread>11</thread>
+  <message>Baglantinin adresi /127.0.0.1:48034</message>
+</record>
+<record>
+  <date>2015-03-23T18:48:18</date>
+  <millis>1427129298864</millis>
+  <sequence>1</sequence>
+  <logger>requests</logger>
+  <level>INFO</level>
+  <class>MultiThreadServer$Handler</class>
+  <method>run</method>
+  <thread>13</thread>
+  <message>Baglantinin adresi /127.0.0.1:48035</message>
+</record>
+<record>
+  <date>2015-03-23T18:48:45</date>
+  <millis>1427129325903</millis>
+  <sequence>2</sequence>
+  <logger>requests</logger>
+  <level>INFO</level>
+  <class>MultiThreadServer$Handler</class>
+  <method>run</method>
+  <thread>11</thread>
+  <message>İstemcinin verisi: Bir den gönderldi</message>
+</record>
+<record>
+  <date>2015-03-23T18:48:52</date>
+  <millis>1427129332975</millis>
+  <sequence>3</sequence>
+  <logger>requests</logger>
+  <level>INFO</level>
+  <class>MultiThreadServer$Handler</class>
+  <method>run</method>
+  <thread>13</thread>
+  <message>İstemcinin verisi: İkiden gönderildi</message>
+</record>
+<record>
+  <date>2015-03-23T18:50:14</date>
+  <millis>1427129414108</millis>
+  <sequence>4</sequence>
+  <logger>requests</logger>
+  <level>INFO</level>
+  <class>MultiThreadServer$Handler</class>
+  <method>run</method>
+  <thread>11</thread>
+  <message>İstemcinin verisi: 11111</message>
+</record>
+<record>
+  <date>2015-03-23T18:50:17</date>
+  <millis>1427129417500</millis>
+  <sequence>5</sequence>
+  <logger>requests</logger>
+  <level>INFO</level>
+  <class>MultiThreadServer$Handler</class>
+  <method>run</method>
+  <thread>13</thread>
+  <message>İstemcinin verisi: 2222</message>
+</record>
+<record>
+  <date>2015-03-23T18:50:45</date>
+  <millis>1427129445250</millis>
+  <sequence>6</sequence>
+  <logger>requests</logger>
+  <level>INFO</level>
+  <class>MultiThreadServer$Handler</class>
+  <method>run</method>
+  <thread>11</thread>
+  <message>İstemcinin verisi: null</message>
+</record>
+<record>
+  <date>2015-03-23T18:50:45</date>
+  <millis>1427129445261</millis>
+  <sequence>7</sequence>
+  <logger>requests</logger>
+  <level>INFO</level>
+  <class>MultiThreadServer$Handler</class>
+  <method>run</method>
+  <thread>15</thread>
+  <message>Baglantinin adresi /127.0.0.1:48037</message>
+</record>
+<record>
+  <date>2015-03-23T18:50:45</date>
+  <millis>1427129445266</millis>
+  <sequence>8</sequence>
+  <logger>requests</logger>
+  <level>INFO</level>
+  <class>MultiThreadServer$Handler</class>
+  <method>run</method>
+  <thread>15</thread>
+  <message>İstemcinin verisi: Üçüncü</message>
+</record>
+<record>
+  <date>2015-03-23T18:50:45</date>
+  <millis>1427129445271</millis>
+  <sequence>9</sequence>
+  <logger>requests</logger>
+  <level>INFO</level>
+  <class>MultiThreadServer$Handler</class>
+  <method>run</method>
+  <thread>15</thread>
+  <message>İstemcinin verisi: 333333</message>
+</record>
+<record>
+  <date>2015-03-23T18:51:10</date>
+  <millis>1427129470148</millis>
+  <sequence>10</sequence>
+  <logger>requests</logger>
+  <level>INFO</level>
+  <class>MultiThreadServer$Handler</class>
+  <method>run</method>
+  <thread>15</thread>
+  <message>İstemcinin verisi: üççççççççççççç</message>
+</record>
+<record>
+  <date>2015-03-23T18:51:17</date>
+  <millis>1427129477523</millis>
+  <sequence>11</sequence>
+  <logger>requests</logger>
+  <level>INFO</level>
+  <class>MultiThreadServer$Handler</class>
+  <method>run</method>
+  <thread>13</thread>
+  <message>İstemcinin verisi: ikikikik</message>
+</record>
+</log>
