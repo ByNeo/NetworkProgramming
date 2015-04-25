@@ -12,7 +12,7 @@ var app = express();
 //app.use(express.static(path.join(__dirname, 'public'))); //  "public" off of current is root
 app.use(express.static('public'));
 app.use(express.static('files'));
-app.listen(8080);
+app.listen(8000);
 console.log('Listening on port 8080');
 
 // index.html dosyası istemcilere gönderiliyor...

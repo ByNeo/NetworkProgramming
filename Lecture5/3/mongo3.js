@@ -10,8 +10,8 @@ should.exists(collection);
 // Ekleme
 
 var kayit= {
-    "ogrenciNo": "00000000007",
-    "adi": "Elif",
+    "ogrenciNo": "00000000004",
+    "adi": "Ayşe",
     "soyadi": "Yılmaz",
     "telefon": {
         "ev": "12345678",

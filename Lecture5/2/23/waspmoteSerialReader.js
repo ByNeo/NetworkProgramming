@@ -2,6 +2,7 @@
 //var serialport = new SerialPort("/dev/tty.USB0");
 
 
+
 var SerialPort = require("serialport").SerialPort;
 var serialPort = new SerialPort("/dev/ttyUSB0", {
     baudrate: 115200,
@@ -29,7 +30,7 @@ serialPort.on("open", function () {
         //console.log(data);
         var date = new Date();
         var dataArray = data.split(':');
-        console.log(dateFormat(date.getTime(), "yyyy-mm-dd HH:MM:ss")+'-->'+dataArray[0]+'::'+dataArray[1]+'::'+dataArray[2]);
+        console.log(dateFormat(date.getTime(), "yyyy-mm-dd HH:MM:ss")+'-->'+dataArray[0]+'::'+dataArray[1]);
     });
 
 
