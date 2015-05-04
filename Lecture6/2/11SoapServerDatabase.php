@@ -12,7 +12,7 @@
 
 class DBService
 {
-    public function select($x, $y)
+    public function select($x)
     {
         $connectionID=pg_connect("host=localhost dbname=pagila user=LectureUser password=LecturePassword")
         or die("Can't connect to database".pg_last_error());
