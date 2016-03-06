@@ -23,7 +23,7 @@
 				else
 				{
 					// IE6, IE5
-					xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+					xmlhttp = new ActiveXObject("Microsoft.XMLHTTP"); // readystate=0
 				}
 				xmlhttp.onreadystatechange = function() //istek durumunu tutan readystate her değiştişinde 
 				//bu fonksiyon tetikleniyor. readystate 0-4 arası değer alıyor. 4->istek sonucu 
@@ -51,7 +51,7 @@
 	<body>
 		
 		<input type="submit" ondblclick="listele()" id="gonder" value="Listele" onclick="listele();"/>
-		
+
 		<div id="ortaForm" style="margin-left: 200px;height: 200px">
 		
 		</div>
