@@ -50,7 +50,7 @@
 
 	<body>
 		
-		<input type="submit" ondblclick="listele()" id="gonder" value="Listele" onclick="listele();"/>
+		<input style="" type="submit" ondblclick="listele()" id="gonder" value="Listele" onclick="listele();"/>
 
 		<div id="ortaForm" style="margin-left: 200px;height: 200px">
 		
