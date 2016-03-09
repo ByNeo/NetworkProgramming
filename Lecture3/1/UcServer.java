@@ -9,9 +9,13 @@ import java.io.*;
 import java.util.Date;
 
 public class UcServer {
-	public final static int PORT = 8080;
-	public static void main(String[] args) {
-		try (ServerSocket server = new ServerSocket(PORT)) {
+	
+	public final static int pORT = 8080;
+	
+	public static void main(String[] args) 
+	{
+		try
+		{	ServerSocket server = new ServerSocket(pORT);
 			while (true) {
 				try (Socket connection = server.accept()) {
 					Writer out = new OutputStreamWriter(connection.getOutputStream());
@@ -19,10 +23,14 @@ public class UcServer {
 					out.write(now.toString() +"\r\n");
 					out.flush();
 					connection.close();
-				} catch (IOException ex) {}
+				} catch (IOException e) 
+				{
+					System.err.println(e.getMessage());
+					System.exit(1);
+				}
 			}
-		} catch (IOException ex) {
-			System.err.println(ex);
+		} catch (IOException e) {
+			System.err.println(e);
 		}
 	}
 }
