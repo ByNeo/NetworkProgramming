@@ -14,16 +14,6 @@ public class BirClient
 		try {
 			socket = new Socket(host,port); // "localhost" ya da sunucu IP adresi
 			
-			//socket.connect(new InetSocketAddress(host, port), 5000);
-			
-			
-			//socket.setSoTimeout(15000); // Faaliyet olmadığı durumda read işlemi için timeout
-			
-						
-			// input stream ve output stream olusuyor
-			
-			//s.bind(new InetSocketAddress("172.16.1.102", 5000));
-			
 			
 			out = new PrintWriter(socket.getOutputStream(), true); 
 			//Creates a new PrintWriter, without (if true then with) automatic line flushing, from an existing OutputStream.

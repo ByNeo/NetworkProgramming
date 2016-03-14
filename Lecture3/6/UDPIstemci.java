@@ -3,7 +3,6 @@
  *  Klavyeden girilen mesaj UDP Sunucuya gönderiliyor. Sunucu ise bu mesajı büyük harflere dönüştürüp geriye
  *  döndürüyor. İstemci sunucudan gelen mesajı ekrana yazdırıyor.
  */
-//package edu.cc.networkprogramming;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -19,7 +18,7 @@ import java.util.logging.Logger;
  * @author wsan
  *
  */
-public class UDPClient
+public class UDPIstemci
 {
 
 	/**
@@ -29,6 +28,10 @@ public class UDPClient
 	private final static int pORT = 8080;
 	private final static Logger audit = Logger.getLogger("requests");
 	private final static Logger errors = Logger.getLogger("errors");
+	
+	private final static int TIMEOUT = 3000;   // Resend timeout (milliseconds)
+	private final static int MAXTRIES = 5;     // Maximum retransmissions
+
 
 	public static void main(String[] args) 
 	{
@@ -58,16 +61,18 @@ public class UDPClient
 			BufferedReader stdIn = new BufferedReader(new InputStreamReader(System.in));
 			String userInput=null;
 			
-			while (true) {
-				try {
-					// Giriş ve çıkışlar için oluşturulacak DatagramPacket içerisinde kullanılmak üzere tampon bellek oluşturuluyor. 
+			// Giriş ve çıkışlar için oluşturulacak DatagramPacket içerisinde kullanılmak üzere tampon bellek oluşturuluyor. 
 					// TCP deki stream yerine DatagramPacket kullanılıyor.
 					
-					byte[] in = new byte[1024]; 
-					byte[] out  = new byte[1024];
-					userInput = new String(stdIn.readLine());
+			byte[] in = new byte[1024]; 
+			byte[] out  = new byte[1024];
+			
+			while (true) {
+				try {
 					
-					if (userInput.equals("end")) // 
+					userInput = new String(stdIn.readLine()); //Klavyeden girilen satiri al
+					
+					if (userInput.equals("cikis")) // Klavyeden "cikis" ifadesi girildiğinde bağlantı sonlandırılacak
 						break;
 					
 					
@@ -75,26 +80,26 @@ public class UDPClient
 					
 					// Sunucuya veri göndermek üzere DatagramPacket oluşturuluyor, içerisine kullanıcının klavyeden girdiği 
 					// mesaj yazılıyor.
-					DatagramPacket response = new DatagramPacket(out, out.length, IPAddress, pORT);
+					DatagramPacket gonderilecekPaket = new DatagramPacket(out, out.length, IPAddress, pORT);
 					
 					// DatagramPacket gönderiliyor
-					socketClient.send(response);
+					socketClient.send(gonderilecekPaket);
 					
 					
 					audit.info("Adres:"+IPAddress);			
 
 					
-					DatagramPacket request = new DatagramPacket(in, in.length);
+					DatagramPacket gelenPaket = new DatagramPacket(in, in.length);
 
-					socketClient.receive(request);
+					socketClient.receive(gelenPaket);
 
-					String inputLine = new String(request.getData());
-					InetAddress IPAddressServer = request.getAddress(); 
+					String inputLine = new String(gelenPaket.getData());
+					InetAddress IPAddressServer = gelenPaket.getAddress(); 
 
-					int port = request.getPort(); 
+					int port = gelenPaket.getPort(); 
 
-					System.out.println ("From: " + IPAddressServer + ":" + port);
-					System.out.println ("Message: " + inputLine);
+					System.out.println ("Gönderen: " + IPAddressServer + ":" + port);
+					System.out.println ("Mesaj: " + inputLine);
 
 					
 				} catch (IOException | RuntimeException ex) {
@@ -110,3 +115,4 @@ public class UDPClient
 		}
 	} 
 }
+

@@ -11,7 +11,7 @@ import java.net.*;
 import java.util.logging.*;
 import java.io.*;
 
-public class UDPServer {
+public class UDPSunucu {
 
 	private final static int PORT = 8080;
 	private final static Logger audit = Logger.getLogger("requests");

@@ -48,14 +48,14 @@ public class BirServer {
 		while (true) 
 		{ // istemciden gelen string okunuyor...
 			inputLine = in.readLine();
-			System.out.println(clientSocket.getLocalSocketAddress()+"istemcisinden gelen :" + inputLine);
+			System.out.println(clientSocket.getRemoteSocketAddress()+"istemcisinden gelen :" + inputLine);
 			outputLine = inputLine.toUpperCase(); // 
 			
 			out.println(outputLine); // 
 			if (outputLine.equals("end")) // 
 				break;
 		}
-		System.out.println(clientSocket.getLocalSocketAddress() + " baglantisi kesildi.");
+		System.out.println(clientSocket.getRemoteSocketAddress() + " baglantisi kesildi.");
 		// stream ve socketleri kapat.
 		out.close();
 		in.close();

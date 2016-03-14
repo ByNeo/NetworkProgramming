@@ -1,8 +1,8 @@
 
 /**
- *  Her istek için sunucu tarafında bu isteği ele alan thread oluşturuluyor.
+ *  Her istek için sunucu tarafında bu isteği ele alan iş parçacığı (thread) oluşturuluyor.
  * 	Thread oluşturulurken Thread sınıfından kalıtım yoluyla elde ediliyor. Runnable gerçeklenerek de thread oluşturulabilirdi
- *  DOS saldırılarına karşı oluşturulacak thread miktarını sınırlamak için ExecutorService kullanılır
+ *  DOS saldırılarına karşı, oluşturulacak iş parçacığı miktarını sınırlamak için ExecutorService kullanılır
  *  Loglama işlemi de gerçekleştirilir
  *
  */
@@ -51,7 +51,7 @@ public class MultiThreadServer
 			while (true) 
 			{
 				Socket clientSocket = serverSocket.accept();
-				System.out.println(clientSocket.getLocalSocketAddress() + " baglandi.");
+				System.out.println(clientSocket.getRemoteSocketAddress() + " baglandi.");
 				
 				// Her bağlantıı için yeni bir thread oluşturuluyor...
 				executor.execute(new Handler(clientSocket));
@@ -137,8 +137,8 @@ public class MultiThreadServer
 				while (true) 
 				{ // istemciden gelen string okunuyor...
 					inputLine = this.getIn().readLine();
-					auditLogger.info("İstemcinin verisi: " + inputLine);
-					System.out.println(this.getClientSocket().getLocalSocketAddress()+"istemcisinden gelen :" + inputLine);
+					auditLogger.info("İstemcinin verisi: " + inputLine); 
+					System.out.println(this.getClientSocket().getRemoteSocketAddress()+"istemcisinden gelen :" + inputLine);
 					outputLine = inputLine.toUpperCase(); // 
 
 					this.out.println(outputLine); // 

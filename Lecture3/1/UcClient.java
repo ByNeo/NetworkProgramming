@@ -4,8 +4,8 @@ import java.net.*;
 
 public class UcClient
 {
-	public static final String sERVER = "time.nist.gov";
-	public static final int pORT = 13;
+	public static final String sERVER = "localhost";
+	public static final int pORT = 8080;
 	public static final int tIMEOUT = 10000;
 	
 	public static void main(String[] args) throws IOException {

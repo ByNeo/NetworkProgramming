@@ -1,6 +1,6 @@
 /**
- *  Her istek için sunucu tarafında bu isteği ele alan thread oluşturuluyor.
- * 	Thread oluşturulurken Thread sınıfından kalıtım yoluyla elde ediliyor. Runnable gerçeklenerek de thread oluşturulabilirdi
+ *  Her istek için sunucu tarafında bu isteği ele alan iş parçacığı (thread) oluşturuluyor.
+ * 	Thread oluşturulurken Thread sınıfından kalıtım yoluyla elde ediliyor. Runnable gerçeklenerek (Single Responsibilty ilkesine daha uygun)de thread oluşturulabilirdi
  */
 
 
@@ -32,9 +32,9 @@ public class MultiThreadServer
 			while (true) 
 			{
 				Socket clientSocket = serverSocket.accept();
-				System.out.println(clientSocket.getLocalSocketAddress() + " baglandi.");
+				System.out.println(clientSocket.getRemoteSocketAddress() + " baglandi.");
 				
-				// Her bağlantıı için yeni bir thread oluşturuluyor...
+				// Her bağlantıı için yeni bir iş parçacığı (thread) oluşturuluyor...
 				Thread task = new Handler(clientSocket);
 				task.start();
 			}
@@ -42,7 +42,11 @@ public class MultiThreadServer
 			/*The finally block always executes when the try block exits. This ensures that the finally block is executed even if 
 			an unexpected exception occurs. But finally is useful for more than just exception handling — it allows the programmer 
 			to avoid having cleanup code accidentally bypassed by a return, continue, or break. 
-			Putting cleanup code in a finally block is always a good practice, even when no exceptions are anticipated.*/
+			Putting cleanup code in a finally block is always a good practice, even when no exceptions are anticipated.
+			
+			The only times finally won't be called are; i)if you call System.exit() or ii) if the JVM crashes first (kill, etc....)
+
+			*/
 		}finally{
 			serverSocket.close();
 		}
@@ -113,14 +117,14 @@ public class MultiThreadServer
 				while (true) 
 				{ // istemciden gelen string okunuyor...
 					inputLine = this.getIn().readLine();
-					System.out.println(this.getClientSocket().getLocalSocketAddress()+"istemcisinden gelen :" + inputLine);
+					System.out.println(this.getClientSocket().getRemoteSocketAddress()+"istemcisinden gelen :" + inputLine);
 					outputLine = inputLine.toUpperCase(); // 
 
 					this.out.println(outputLine); // 
 					if (outputLine.equals("BYE")) // 
 						break;
 				}
-				System.out.println(this.getClientSocket().getLocalSocketAddress() + " baglantisi kesildi.");
+				System.out.println(this.getClientSocket().getRemoteSocketAddress() + " baglantisi kesildi.");
 				// stream ve socketleri kapat.
 				this.getOut().close();
 				this.getIn().close();
