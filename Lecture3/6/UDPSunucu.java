@@ -13,7 +13,7 @@ import java.io.*;
 
 public class UDPSunucu {
 
-	private final static int PORT = 8080;
+	private final static int pORT = 8080;
 	private final static Logger audit = Logger.getLogger("requests");
 	private final static Logger errors = Logger.getLogger("errors");
 
@@ -27,7 +27,7 @@ public class UDPSunucu {
 			FileHandler handler = new FileHandler("server.log", 100000, 10000);
 			Logger.getLogger("").addHandler(handler);
 			
-			socketServer = new DatagramSocket(PORT);
+			socketServer = new DatagramSocket(pORT);
 			
 			
 			String outputLine;
@@ -41,26 +41,26 @@ public class UDPSunucu {
 					byte[] in = new byte[1024]; 
 					byte[] out  = new byte[1024];
 					
-					DatagramPacket request = new DatagramPacket(in, in.length);
+					DatagramPacket gelenPaket = new DatagramPacket(in, in.length);
 
-					socketServer.receive(request);
+					socketServer.receive(gelenPaket);
 
-					String inputLine = new String(request.getData());
-					InetAddress IPAddress = request.getAddress(); 
+					String inputLine = new String(gelenPaket.getData());
+					InetAddress IPAddress = gelenPaket.getAddress(); 
 
-					int port = request.getPort(); 
+					int port = gelenPaket.getPort(); 
 
-					System.out.println ("From: " + IPAddress + ":" + port);
-					System.out.println ("Message: " + inputLine);
+					System.out.println ("Kimden: " + IPAddress + ":" + port);
+					System.out.println ("Mesaj: " + inputLine);
 
 					outputLine = inputLine.toUpperCase(); 
 					out= outputLine.getBytes();
 					
-					DatagramPacket response = new DatagramPacket(out, out.length, request.getAddress(), request.getPort());
-					socketServer.send(response);
+					DatagramPacket gonderilecekPaket = new DatagramPacket(out, out.length, gelenPaket.getAddress(), gelenPaket.getPort());
+					socketServer.send(gonderilecekPaket);
 					audit.info("Adres:"+IPAddress);			
 
-					if (outputLine.equals("end")) // 
+					if (outputLine.equals("cikis")) // 
 						break;
 
 

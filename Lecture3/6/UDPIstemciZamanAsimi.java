@@ -14,6 +14,7 @@ import java.net.InetAddress;
 import java.util.logging.FileHandler;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.Date;
 
 /**
  * @author wsan
@@ -27,8 +28,7 @@ public class UDPIstemciZamanAsimi
 	 */
 	private final static String sUNUCU = "localhost";
 	private final static int pORT = 8080;
-	private final static Logger audit = Logger.getLogger("requests");
-	private final static Logger errors = Logger.getLogger("errors");
+	private final static Logger audit = Logger.getLogger("gunluk");
 
 	private final static int tIMEOUT = 2000;   // Resend timeout (milliseconds)
 	private final static int tEKRARgONDERIMsINIRI = 3;     // Maximum retransmissions
@@ -38,12 +38,14 @@ public class UDPIstemciZamanAsimi
 	{
 
 		DatagramSocket socketClient=null;
+		// sunucu IP adresi bulunuyor
+		InetAddress sunucuIPAdresi=null; 
 
 		try
 		{	//Log dosyası belirleniyor...
 
 			FileHandler handler = new FileHandler("Logs/client.log", 100000, 10000);
-			Logger.getLogger("").addHandler(handler);
+			Logger.getLogger("gunluk").addHandler(handler);
 
 			// Soket oluşturuluyor
 			socketClient = new DatagramSocket();
@@ -52,10 +54,11 @@ public class UDPIstemciZamanAsimi
 			//bağlantı yönelimli olmadığı için bu kadar süre sonra yanıt gelmez ise verinin gitmediği düşünülebilir...
 
 			socketClient.setSoTimeout(tIMEOUT);
+			
+			
+			sunucuIPAdresi = InetAddress.getByName(sUNUCU);
 
-
-			// sunucu IP adresi bulunuyor
-			InetAddress sunucuIPAdresi = InetAddress.getByName(sUNUCU);
+			
 
 			// klavyeden girdi: stdIn
 			BufferedReader stdIn = new BufferedReader(new InputStreamReader(System.in));
@@ -77,7 +80,7 @@ public class UDPIstemciZamanAsimi
 
 
 					out=userInput.getBytes(); // kullanıcının girdiği string byte dizisine dönüştürülüyor.
-
+	
 					// Sunucuya veri göndermek üzere DatagramPacket oluşturuluyor, içerisine kullanıcının klavyeden girdiği 
 					// mesaj yazılıyor.
 					DatagramPacket gonderilecekPaket = new DatagramPacket(out, out.length, sunucuIPAdresi, pORT);
@@ -91,8 +94,8 @@ public class UDPIstemciZamanAsimi
 						// DatagramPacket gönderiliyor
 						socketClient.send(gonderilecekPaket);
 
-
-						audit.info("Adres:"+sunucuIPAdresi);			
+						// Bilgi mesajı olarak günlüğe ekleniyor
+						audit.info("Paket gönderildi. Hedef soket adresi:"+sunucuIPAdresi+" : "+pORT);			
 
 
 						// Sunucudan gelen veriyi almak üzere DatagramPacket oluşturuluyor
@@ -100,6 +103,10 @@ public class UDPIstemciZamanAsimi
 						try {
 							socketClient.receive(gelenPaket);
 							if (!gelenPaket.getAddress().equals(sunucuIPAdresi)) {// Check source
+								
+								// Uyarı mesajı olarak günlüğe ekleniyor
+								audit.warning("Bilinmeyen bir kaynaktan paket geldi:"+gelenPaket.getAddress());	
+								
 								throw new IOException("Received packet from an unknown source");
 							}
 							yanitGeldi = true;
@@ -123,20 +130,21 @@ public class UDPIstemciZamanAsimi
 					if (!yanitGeldi) 
 					{					     
 					      System.out.println("Yanit yok, daha sonra yeniden deneyiniz!!!");
-					      errors.log(Level.SEVERE,"Yanit yok, daha sonra yeniden deneyiniz!!!");
+					      audit.log(Level.SEVERE,"Yanit yok, daha sonra yeniden deneyiniz!!!");
 					      break;
 					}
 					    
 
 				} catch (IOException | RuntimeException ex) {
-					errors.log(Level.SEVERE, ex.getMessage(), ex);
+					audit.log(Level.SEVERE, ex.getMessage(), ex);
 				}
 			}
 		} catch (IOException ex) 
 		{
-			errors.log(Level.SEVERE, ex.getMessage(), ex);
+			audit.log(Level.SEVERE, ex.getMessage(), ex);
 		}finally
-		{
+		{	Date now = new Date();
+			audit.info("Bağlantı sonlandırıldı"+now.toString()+". Uzak Sistem:"+sunucuIPAdresi);		
 			socketClient.close();
 		}
 	} 
