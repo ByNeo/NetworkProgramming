@@ -26,7 +26,7 @@ import java.util.logging.*;
  */
 public class MultiThreadServer 
 {
-	private static final int PORT = 8001;
+	private static final int PORT = 8080;
 	private final static Logger auditLogger = Logger.getLogger("requests");
 	private final static Logger errorLogger = Logger.getLogger("errors");
 	
