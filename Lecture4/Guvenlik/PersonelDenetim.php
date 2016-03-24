@@ -8,7 +8,7 @@
 			{
 			
 				echo "Yetkili kullanıcı değilsiniz....Giriş yapmanız gerekiyor
-				<a href=\"PersonelGirisEkrani.php\" >Giriş</a>";
+				<a href=\"../index.html\" >Giriş</a>";
 				
 				exit();
 			

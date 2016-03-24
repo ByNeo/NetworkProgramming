@@ -1,14 +1,15 @@
 <?php
-require_once 'Configuration/DatabaseCredentials.php';
-require_once 'ClassIstisnaVeritabani.php';
+//echo "ClassVeritabaniMysqli" ;
+
+
 
 /**
  * Class Veritabani
  */
 
-class Veritabani //implements VeritabaniArayuz
+class Database //implements VeritabaniArayuz
 {
-    private $veritabani;
+    private $databaseConnection;
 
     /**
      * @var :oluşan nesneyi gösterir (tutar). nesne oluşturmadan önce buraya bakacağımız için
@@ -18,9 +19,9 @@ class Veritabani //implements VeritabaniArayuz
     /**
      * @return mysqli
      */
-    public function getVeritabani()
+    public function getDatabaseConnection()
     {
-        return $this ->veritabani;
+        return $this ->databaseConnection;
     }
 
     /**
@@ -29,11 +30,15 @@ class Veritabani //implements VeritabaniArayuz
      */
     private function __construct()
     {
-        global $sunucu, $kullaniciAdi, $sifre, $veritabani;
+        require_once(__DIR__.'/../Configuration/DatabaseCredentials.php');
 
-        try {
-            $this->veritabani = new PDO("mysql:host=localhost;dbname=ob;charset=utf8", "LectureUser", "LecturePassword");
+        try
+        {   //echo "$vtys:dbname=$veritabaniAdi";
+            $this->databaseConnection = new PDO("$vtys:dbname=$veritabaniAdi;   host=localhost;   user=LectureUser;   password=LecturePassword");
+           // $this->databaseConnection = new PDO("pgsql:dbname=OgrenciBilgiSistemi;   host=localhost;   user=LectureUser;   password=LecturePassword");
+
         } catch ( PDOException $e ){
+           // echo "deneme";
             print $e->getMessage();
         }
 
@@ -66,7 +71,7 @@ class Veritabani //implements VeritabaniArayuz
     public function __destruct()
     {
 
-       $this->veritabani=null;
+       $this->databaseConnection=null;
 
     }
 

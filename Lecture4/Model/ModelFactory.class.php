@@ -8,18 +8,20 @@
 
 
 
-class NesneOlusturucu {
+class ModelOlusturucu {
 
-    public static function nesneOlustur($class)
+    public static function modelOlustur($class,$param1,$param2,$param3,$param4)
     {
         try
         {
-            $dir = 'Classes/' . $class . '.php';
-
+            $dir = __DIR__.'/'.$class.'.class.php';
+            //echo $dir;
             if(file_exists($dir))
             {
-                include_once $dir;
-                return new $class;
+                require_once $dir;
+                $class='\cc\\'.$class;
+                //echo $class;
+                return new $class($param1,$param2,$param3,$param4);
             }
             else
             {

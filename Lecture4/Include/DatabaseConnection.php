@@ -6,14 +6,14 @@
  * Time: 02:08
  */
 
-
-	require_once 'Classes/ClassVeritabaniMysqli.php';
-	require_once 'Classes/ClassIstisnaVeritabani.php';
+require_once(__DIR__ . '/../Classes/Database.class.php');
+require_once(__DIR__ . '/../Classes/DatabaseException.class.php');
+// __DIR__ dosyanin bulunduğu dizin yolu döner.
 
 	try
     {
-        $veritabaniNesnesi= Veritabani::getInstance();
-        //$veritabani = new Veritabani();
+        $veritabaniNesnesi= Database::getInstance();
+
     }
     catch (DBException $e)
     {
@@ -21,6 +21,6 @@
         exit(1);
     }
 
-    $veritabani=$veritabaniNesnesi->getVeritabani();
-
+    $veritabaniBaglantisi=$veritabaniNesnesi->getDatabaseConnection();
+    //var_dump($veritabaniBaglantisi);
 

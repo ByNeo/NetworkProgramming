@@ -12,4 +12,3 @@
 		echo "bağlantı başarısız... " . mysqli_connect_error();
 	}
 	mysqli_set_charset($baglantiNo,"utf8");
-?>

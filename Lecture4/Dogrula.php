@@ -1,9 +1,17 @@
 
 <?php
 
-require_once 'Include/DatabaseConnection.php';
-require_once 'Classes/ClassSessionManagement.php';
-//require_once 'Classes/ClassNesneOlusturucu.php';
+//require_once 'Include/DatabaseConnection.php';
+
+
+//require_once 'Classes/SessionManagement.class.php';
+//require_once 'Classes/SecureSessionHandler.class.php';
+require_once 'Classes/ObjectFactory.class.php';
+
+
+
+
+
 
 // require_once 'Guvenlik/PersonelDenetim.php';
 
@@ -14,31 +22,26 @@ require_once 'Classes/ClassSessionManagement.php';
 
 //$result = $veritabani->query($sql);
 
-//$kisi1=NesneOlusturucu::nesneOlustur('Kisi');
 
-$userService = new SessionManagement($veritabani, $_POST['personelNo'], $_POST['sifre']);
+$userSession = ObjectFactory::getObject('SessionManagement');
 
-if ($user=$userService->login())
+//$userService = new SessionManagement($veritabani, $_POST['personelNo'], $_POST['sifre']);
+//var_dump($userService);
+
+if ($userSession->login($_POST['personelNo'], $_POST['sifre']))
 {
-
-    session_start();
-
-    $_SESSION['personelNo'] = $_POST['personelNo'];
-
-    $_SESSION['baglandi'] =TRUE;
-
-    $_SESSION['baslangicZamani']=time();
-    $_SESSION['user']=$user;
-
-    // Yetki düzeyi de eklenmeli...
-
     $data= array ('sonuc'=>'1');
-    //print_r($data);
+
+    //print_r($user);
+
+    //$logger->log($akademikPersonel->getPersonelNo().' baglandi...',LOGGER::INFO);
+
 }
 else
 {
     $data= array ('sonuc'=>'0');
     //print_r($data);
+    //$logger->log($_POST['personelNo'].' hatali kimlik bilgisi',LOGGER::WARNING);
 
 }
 

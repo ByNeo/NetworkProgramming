@@ -17,7 +17,7 @@
 		
 
 			echo "Giriş yapmanız gerekiyor
-				<a href=\"../AnaGiris.php\" >Giriş</a>";
+				<a href=\"../index.html\" >Giriş</a>";
 		?>
 
 		
