@@ -1,9 +1,0 @@
-{
-  "name": "StatikWebOrnegi",
-  "version": "0.0.1",
-  "description": "Web Sunucu",
-  "dependencies":
-  {
-    "express": ""
-  }
-}

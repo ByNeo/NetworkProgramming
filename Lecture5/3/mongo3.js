@@ -10,7 +10,7 @@ should.exists(collection);
 // Ekleme
 
 var kayit= {
-    "ogrenciNo": "00000000004",
+    "ogrenciNo": "00000000666",
     "adi": "Ayşe",
     "soyadi": "Yılmaz",
     "telefon": {
@@ -48,11 +48,7 @@ collection.remove({ ogrenciNo: '00000000002' }, function (err) {
 var yeniKayit= {
     "ogrenciNo": "00000000001",
     "adi": "Ahsen",
-    "soyadi": "Sam",
-    "telefon": {
-        "ev": "12345678",
-        "is": "87654321"
-    }
+
 }
 
 collection.update({ogrenciNo: '00000000004'}, yeniKayit);

@@ -40,7 +40,7 @@ io.sockets.on('connection', function(socket) {
       // parsing the new xml data and converting them into json file
       var json = parser.toJson(data);
       // send the new data to the client
-      socket.volatile.emit('notification', json);
+      socket.emit('notification', json);
     });
   });
 

@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <Duyurular>
-	<duyuru>
-        <duyuruNo>6</duyuruNo>
-        <duyuruAyrinti>sdfasdf</duyuruAyrinti>
+
+    <duyuru>
+        <duyuruNo>4</duyuruNo>
+        <duyuruAyrinti>1. Duyuru 1</duyuruAyrinti>
     </duyuru>
 </Duyurular>
