@@ -6,28 +6,29 @@
 
 
 var app = require('express')();
-var http = require('http').Server(app);
-var io = require('socket.io')(http);
+var httpServer = require('http').Server(app);
+var io = require('socket.io')(httpServer);
 
 // index.html dosyası istemcilere gönderiliyor...
 app.get('/', function(req, res){
   res.sendFile(__dirname + '/index.html');
 });
 
-http.listen(8080, function(){
+httpServer.listen(8080, function(){
     console.log('8080 Portu dinleniyor...');
 });
 
 
-io.on('connection', function(socket)
+io.on('connection', function(socket) // bağlantı kurulduğunda
 {
     console.log('Bir kullanıcı bağlandı');
 
-    socket.on('mesaj', function(msg)
+    socket.on('mesaj', function(msg) // kullanıcı tanımlı olay
     {
         io.emit('mesaj', msg);
+
     });
-    socket.on('disconnect', function()
+    socket.on('disconnect', function() //disconnect (connect, message ve kullanıcı tanımlı olaylar belirlenebiliyor) olayı gerçekleştiğinde
     {
         console.log('Kullanıcı ayrıldı...');
     });
