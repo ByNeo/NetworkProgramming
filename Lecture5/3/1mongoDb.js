@@ -10,9 +10,9 @@ should.exists(collection);
 // Ekleme
 
 var kayit= {
-    "ogrenciNo": "00000000666",
-    "adi": "Ayşe",
-    "soyadi": "Yılmaz",
+    "ogrenciNo": "yxz",
+    "adi": "Mehmet",
+    "soyadi": "Şahin",
     "telefon": {
         "ev": "12345678",
         "is": "87654321"
@@ -31,12 +31,15 @@ var kayit= {
 	    	}
 	    });
 	    
-	    
+
+
+
 // Listeleme	    
-collection.find({}, { limit : 100 }, function (err, docs){
+collection.find({"ogrenciNo":"yxz"}, { limit : 100 }, function (err, docs){
   for(i=0;i<docs.length;i++)
     console.log(docs[i]);
 });
+
 
 // Silme
 collection.remove({ ogrenciNo: '00000000002' }, function (err) {
@@ -52,4 +55,6 @@ var yeniKayit= {
 }
 
 collection.update({ogrenciNo: '00000000004'}, yeniKayit);
- 
+
+
+

@@ -30,6 +30,7 @@ http.createServer( function (request, response) {
             // HTTP Status: 404 : NOT FOUND
             // Content Type: text/plain
             response.writeHead(404, {'Content-Type': 'text/html'});
+            response.write('Sayfa Yok...');
         }else{
             //Page found
             // HTTP Status: 200 : OK

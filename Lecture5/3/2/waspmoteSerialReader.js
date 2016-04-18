@@ -33,5 +33,4 @@ serialPort.on("open", function () {
         console.log(dateFormat(date.getTime(), "yyyy-mm-dd HH:MM:ss")+'-->'+dataArray[0]+'::'+dataArray[1]);
     });
 
-
 });
