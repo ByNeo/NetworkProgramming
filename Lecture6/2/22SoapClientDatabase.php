@@ -15,15 +15,15 @@ if ($error) {
     echo "<h2>Constructor error</h2><pre>" . $error . "</pre>";
 }
 
-$result = $client->call("DBService.select", array("type" => $_GET['id']));
-echo "sonuc...";
-print_r($result);
-
+$result = $client->call("PagilaCustomers.find", array("type" => $_GET['id']));
+//echo "sonuc...";
+//print_r($result);
+echo $result;
 
 if ($client->fault) {
     echo "<h2>Fault</h2><pre>";
     print_r($result);
-    echo "</pre>";
+      echo "</pre>";
 } else {
     $error = $client->getError();
     if ($error) {

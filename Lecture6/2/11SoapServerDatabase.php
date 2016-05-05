@@ -7,14 +7,14 @@
  */
 
 
-// Soap and php 2014 notu çok güzel
+// Soap and php 2014 (reference)
 // Kendi sistemlerimiz arasında haberleşme yapılacaksa WSDL kullanmaya gerek yok...
 
 class DBService
 {
     public function select($x)
     {
-        $connectionID=pg_connect("host=localhost dbname=pagila user=LectureUser password=LecturePassword")
+        $connectionID=pg_connect("host=localhost dbname=Pagila user=LectureUser password=LecturePassword")
         or die("Can't connect to database".pg_last_error());
         $query = "SELECT * FROM customer where customer_id=$x";
 
