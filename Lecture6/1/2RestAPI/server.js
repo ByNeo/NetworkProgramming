@@ -1,16 +1,16 @@
 //Dependencies
 var express    = require('express');
-var monk = require("monk"); // a framework that makes accessing MongoDb really easy
-var bodyParser = require('body-parser'); //to get the parameters
+var monk = require("monk"); // MongoDB Driver
+var bodyParser = require('body-parser'); // get parameters from a request
 var morgan     = require('morgan'); // log requests to the console
-var should = require("should"); //  It keeps your test code clean, and your error messages helpful.
+var should = require("should"); //  try-catch mechanism
 
 // configurations
 
-var app        = express();
-app.use(morgan('dev'));
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
+var app = express();
+app.use(morgan('dev')); //express middleware
+app.use(bodyParser.urlencoded({ extended: true })); //express middleware - parse application/x-www-form-urlencoded
+app.use(bodyParser.json()); // parse application/json
 
 
 var db = monk('localhost/OgrenciBilgiSistemi');
@@ -18,9 +18,10 @@ should.exists(db);
 var collection = db.get("ogrenciler");
 should.exists(collection);
 
-var router = express.Router();
+var router = express.Router(); //isteklerin proseslere hangi yoldan erişeceğini tanımlar
 // Tüm istekler için kök dizin
-app.use('/RestAPI', router);
+app.use('/RestAPI', router); // proseslere erişmek için istekler "sunucuSoketAdresi/RestAPI" ile başlayacak
+                             // http://localhost:8080/RestAPI
 
 
 // Start server
@@ -41,10 +42,10 @@ router.use(function(req, res, next) {
 //for GET http://localhost:8080/RestAPI requests
 
 router.get('/', function(req, res) {
-	res.json({ message: 'Rest API çalışıyor... ' });
+	res.json({ message: 'Rest API Ana Dizini ' });
 });
 
-//for  http://localhost:8080/RestAPI/Ogrenciler requests
+//  http://localhost:8080/RestAPI/Ogrenciler
 router.route('/Ogrenciler')
 
 	// insert operation
@@ -69,6 +70,7 @@ router.route('/Ogrenciler')
             else
             {
                 console.log("eklendi - ");
+                res.json({ message: 'Kayıt Eklenmiştir' });
             }
         });
 		
@@ -76,7 +78,7 @@ router.route('/Ogrenciler')
 
     // select  operation (all rows)
 	.get(function(req, res) {
-        collection.find({}, { limit : 10 }, function (err, docs){
+        collection.find({}, { limit : 50 }, function (err, docs){
             /*for(i=0;i<docs.length;i++)
                 console.log(docs[i]);
             });*/
@@ -99,21 +101,33 @@ router.route('/Ogrenciler/:ogrenciNo')
 
     // update  operation (ogrenciNo)
 	.put(function(req, res) {
-        console.log(req.body.adi+' '+req.params.ogrenciNo);
-        var yeniKayit= {
-            "ogrenciNo": req.params.ogrenciNo,
-            "adi": req.body.adi,
-            "soyadi": "Sam",
-            "telefon": {
-                "ev": "12345678",
-                "is": "87654321"
+        console.log(req.body.adi + '' +req.body.soyadi+''+ req.params.ogrenciNo);
+
+
+        // collection.update({ogrenciNo:req.params.ogrenciNo}, { "adi": req.body.adi,  "soyadi": req.body.adi});
+
+
+        collection.findAndModify(
+            {
+                query: {ogrenciNo: req.params.ogrenciNo},
+
+                update: { $set: {
+                                    adi: req.body.adi,
+                                    soyadi: req.body.soyadi
+                                }
+                        }
+            },
+            /*{"new": true, "upsert": true},*/
+            function (err, doc) {
+                if (err) throw err;
+                console.log(doc);
             }
-        }
+        );
+        res.json({ message: 'Güncelleme işlemi başarılı' });
 
-        collection.update({ogrenciNo:req.params.ogrenciNo}, yeniKayit);
-
-            res.json({ message: 'Güncelleme işlemi başarılı' });
     })
+
+
 
 
     // delete  operation (ogrenciNo)

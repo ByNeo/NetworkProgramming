@@ -1,33 +1,33 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
-<definitions xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tns="http://localhost/NetworkProgramming/Lecture6/2/CustomerService" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns="http://schemas.xmlsoap.org/wsdl/" targetNamespace="http://localhost/NetworkProgramming/Lecture6/2/CustomerService">
+<definitions xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tns="http://localhost/NetworkProgramming/Lecture6/2/PagilaCustomerService" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns="http://schemas.xmlsoap.org/wsdl/" targetNamespace="http://localhost/NetworkProgramming/Lecture6/2/PagilaCustomerService">
     <types>
-        <xsd:schema targetNamespace="http://localhost/NetworkProgramming/Lecture6/2/CustomerService"
-                >
-            <xsd:import namespace="http://schemas.xmlsoap.org/soap/encoding/" />
-            <xsd:import namespace="http://schemas.xmlsoap.org/wsdl/" />
+        <xsd:schema targetNamespace="http://localhost/NetworkProgramming/Lecture6/2/PagilaCustomerService"
+        >
+            <xsd:import namespace="http://schemas.xmlsoap.org/soap/encoding/" ></xsd:import>
+            <xsd:import namespace="http://schemas.xmlsoap.org/wsdl/" ></xsd:import>
         </xsd:schema>
     </types>
-    <message name="DBService.selectRequest">
+    <message name="PagilaCustomers.findRequest">
         <part name="type" type="xsd:int" /></message>
-    <message name="DBService.selectResponse">
+    <message name="PagilaCustomers.findResponse">
         <part name="return" type="xsd:string" /></message>
-    <portType name="CustomerServicePortType">
-        <operation name="DBService.select">
-            <documentation>Return customer by id</documentation>
-            <input message="tns:DBService.selectRequest"/>
-            <output message="tns:DBService.selectResponse"/>
+    <portType name="PagilaCustomerServicePortType">
+        <operation name="PagilaCustomers.find">
+            <documentation>Return related customer information</documentation>
+            <input message="tns:PagilaCustomers.findRequest"/>
+            <output message="tns:PagilaCustomers.findResponse"/>
         </operation>
     </portType>
-    <binding name="CustomerServiceBinding" type="tns:CustomerServicePortType">
+    <binding name="PagilaCustomerServiceBinding" type="tns:PagilaCustomerServicePortType">
         <soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
-        <operation name="DBService.select">
-            <soap:operation soapAction="http://localhost/NetworkProgramming/Lecture6/2/CustomerService#select" style="rpc"/>
-            <input><soap:body use="encoded" namespace="http://localhost/NetworkProgramming/Lecture6/2/CustomerService" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/></input>
-            <output><soap:body use="encoded" namespace="http://localhost/NetworkProgramming/Lecture6/2/CustomerService" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/></output>
+        <operation name="PagilaCustomers.find">
+            <soap:operation soapAction="http://localhost/NetworkProgramming/Lecture6/2/PagilaCustomerService#find" style="rpc"/>
+            <input><soap:body use="encoded" namespace="http://localhost/NetworkProgramming/Lecture6/2/PagilaCustomerService" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/></input>
+            <output><soap:body use="encoded" namespace="http://localhost/NetworkProgramming/Lecture6/2/PagilaCustomerService" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/></output>
         </operation>
     </binding>
-    <service name="CustomerService">
-        <port name="CustomerServicePort" binding="tns:CustomerServiceBinding">
+    <service name="PagilaCustomerService">
+        <port name="PagilaCustomerServicePort" binding="tns:PagilaCustomerServiceBinding">
             <soap:address location="http://localhost/NetworkProgramming/Lecture6/2/21SoapServerDatabase.php"/>
         </port>
     </service>

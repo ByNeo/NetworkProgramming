@@ -12,11 +12,11 @@
 require_once('References/nusoap-0.9.5/lib/nusoap.php');
 
 
-class DBService
+class PagilaCustomers
 {
-    public function select($x)
+    public function find($x)
     {
-        $connectionID=pg_connect("host=localhost dbname=pagila user=LectureUser password=LecturePassword")
+        $connectionID=pg_connect("host=localhost dbname=Pagila user=LectureUser password=LecturePassword")
         or die("Can't connect to database".pg_last_error());
         $query = "SELECT * FROM customer where customer_id=$x";
 
@@ -33,15 +33,15 @@ class DBService
 
 $server = new soap_server();
 
-$server->configureWSDL("CustomerService", "http://localhost/NetworkProgramming/Lecture6/2/CustomerService");
+$server->configureWSDL("PagilaCustomerService", "http://localhost/NetworkProgramming/Lecture6/2/PagilaCustomerService"); //configure WSDL
 
-$server->register("DBService.select",
+$server->register("PagilaCustomers.find",
     array("type" => "xsd:int"),
     array("return" => "xsd:string"),
-    "http://localhost/NetworkProgramming/Lecture6/2/CustomerService",
-    "http://localhost/NetworkProgramming/Lecture6/2/CustomerService#select",
+    "http://localhost/NetworkProgramming/Lecture6/2/PagilaCustomerService", //namespace
+    "http://localhost/NetworkProgramming/Lecture6/2/PagilaCustomerService#find", //define soap action
     "rpc",
     "encoded",
-    "Return customer by id");
+    "Return related customer information");
 
 @$server->service($HTTP_RAW_POST_DATA);
